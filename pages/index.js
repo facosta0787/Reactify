@@ -1,8 +1,31 @@
 import React, { Component } from 'react'
+
+import { bindActionCreators } from 'redux'
+import withRedux from 'next-redux-wrapper'
+import { initStore } from '../store'
+import actions from '../actions'
+
+
 import { Input, Form, Button } from 'semantic-ui-react'
 import Card from '../components/CardView'
 
 class Home extends Component {
+
+  state = {
+    errorSearch:''
+  }
+
+  constructor(props){
+    super(props)
+  }
+
+  static async getInitialProps({ store , isServer , query }){
+    const token = await store.dispatch( actions.loadToken(isServer) )
+  }
+
+  componentDidMount(){
+    console.log(this.props)
+  }
 
   render() {
     return (
@@ -14,13 +37,30 @@ class Home extends Component {
             <Button primary size='mini'>Send</Button>
           </Form.Group>
         </Form>
-        <Card name='Felipe Acosta'
-              image='static/img/default-image.png'
-              genres='Reggaeton, Electronic, Edm, Techno'></Card>
+        {
+          this.props.results.artists && this.props.results.artists.items.map(
+            item => {
+              return (
+                <Card key={item.id}
+                  name={item.name}
+                  image={item.images}
+                  genres={item.genres.join(', ')}/>
+              )
+            }
+          )
+        }
       </div>
     )
   }
 
 }
 
-export default Home;
+const mapStateToProps = ({results,loading,token}) => ({results,loading,token})
+
+function mapDispatchToProps(dispatch){
+  return{
+    actions: bindActionCreators(actions,dispatch)
+  }
+}
+
+export default withRedux(initStore,mapStateToProps,mapDispatchToProps)(Home)

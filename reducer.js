@@ -1,4 +1,4 @@
-expor const reducer = ( state  = initialState, action = {} ) => {
+export const reducer = ( state  = initialState, action = {} ) => {
   switch (action.type) {
     case 'SET_RESULTS':
         return { ...state, results: action.payload }

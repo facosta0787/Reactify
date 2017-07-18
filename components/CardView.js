@@ -2,7 +2,8 @@ import React from 'react'
 import { Card, Icon, Image } from 'semantic-ui-react'
 
 const CardView = (props) => {
-  const { name, image, genres } = props
+  const image = !props.image.length == 0 ? props.image[0].url : 'static/img/default-image.png'
+  const { name, genres } = props
   return (
   <Card>
     <Image src={ image } />
