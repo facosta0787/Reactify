@@ -31,9 +31,9 @@ class Home extends Component {
     return (
       <div>
         <br />
-        <Form>
+        <Form onSubmit={this.handleBuscarClick}>
           <Form.Group>
-            <Input placeholder='Search' size='mini' style={{ width: '200px' }}></Input>
+            <Input placeholder='Search' size='mini' style={{ width: '200px' }} name='Searcher'></Input>
             <Button primary size='mini'>Send</Button>
           </Form.Group>
         </Form>
@@ -51,6 +51,18 @@ class Home extends Component {
         }
       </div>
     )
+  }
+
+  // Event functions
+  handleBuscarClick = async (e) => {
+      e.preventDefault()
+      const input = document.getElementsByName('Searcher')
+      const value = input[0].value
+      if(!value == ''){
+        await this.props.actions.loadResults(value)
+      }else{
+        this.setState({errorSearch:'this field is required!'})
+      }
   }
 
 }
