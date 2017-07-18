@@ -1,12 +1,14 @@
 import React from 'react'
 import { Card, Icon, Image } from 'semantic-ui-react'
 
-const CardExampleCard = () => (
+const CardView = (props) => {
+  const { name, image, genres } = props
+  return (
   <Card>
-    <Image src='/assets/images/avatar/large/matthew.png' />
+    <Image src={ image } />
     <Card.Content>
       <Card.Header>
-        Matthew
+        { name || '' }
       </Card.Header>
       <Card.Meta>
         <span className='date'>
@@ -14,7 +16,7 @@ const CardExampleCard = () => (
         </span>
       </Card.Meta>
       <Card.Description>
-        Felipe is an software engineer.
+        {genres || ''}
       </Card.Description>
     </Card.Content>
     <Card.Content extra>
@@ -24,6 +26,6 @@ const CardExampleCard = () => (
       </a>
     </Card.Content>
   </Card>
-)
+)}
 
-export default CardExampleCard
+export default CardView
