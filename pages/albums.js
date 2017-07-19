@@ -1,5 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import Menu from '../components/MenuView'
+import { Item } from 'semantic-ui-react'
+import ItemList from '../components/ItemList'
 
 import { bindActionCreators } from 'redux'
 import withRedux from 'next-redux-wrapper'
@@ -22,10 +24,21 @@ class AlbumsPage extends Component {
   }
 
   render() {
+    const { albums } = this.props.results
     return (
       <div>
-        
         <Menu />
+        <Item.Group divided style={{ width: '70%', margin: '0 auto' }}>
+          {
+              albums && albums.items.map(
+                item => {
+                  return(
+                    <ItemList  key={item.id} {...item}/>
+                  )
+                }
+              )
+          }
+        </Item.Group>
       </div>
     );
   }

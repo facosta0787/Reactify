@@ -28,7 +28,7 @@ class Home extends Component {
   }
 
   async componentDidMount(){
-    //console.log(this.props)
+
   }
 
   render() {
@@ -73,7 +73,7 @@ class Home extends Component {
       const value = input[0].value
       if(!value == ''){
         await this.props.actions.loadResults(value)
-
+        console.log(this.props)
       }else{
         this.setState({errorSearch:'this field is required!'})
       }

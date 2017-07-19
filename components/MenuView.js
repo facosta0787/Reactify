@@ -17,7 +17,7 @@ class MenuView extends Component {
   render() {
     const { pageMenu } = this.props
     return (
-      <div style={{ margin:'0 auto 0 auto', width: 520 , marginBottom: '10px' }}>
+      <div style={{ margin:'0 auto 0 auto', width: 520 , marginBottom: '20px' }}>
         <Menu pointing secondary size='mini'>
             <Menu.Item name='artists' active={pageMenu === 'artists'} onClick={this.handleItemClick} />
             <Menu.Item name='tracks'  active={pageMenu === 'tracks'}  onClick={this.handleItemClick} />
