@@ -1,9 +1,11 @@
 {
-  "name": "create-next-example-app",
+  "name": "Reactify",
+  "license": "MIT",
   "scripts": {
-    "dev": "next",
+    "dev": "next -p 3000",
     "build": "next build",
-    "start": "next start"
+    "start": "next start -p 3000",
+    "go": "yarn build && yarn start"
   },
   "dependencies": {
     "babel-plugin-styled-components": "^1.1.7",
