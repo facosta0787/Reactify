@@ -37,10 +37,18 @@ function loadToken(isServer = false){
  }
 }
 
+function setPageMenu(page){
+  return {
+    type: 'SET_PAGEMENU',
+    payload: page
+  }
+}
+
 export default{
   loadResults,
   loadToken,
 
   setResults,
-  setToken
+  setToken,
+  setPageMenu
 }

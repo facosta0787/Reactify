@@ -6,6 +6,9 @@ export const reducer = ( state  = initialState, action = {} ) => {
     case 'SET_TOKEN':
         return { ...state, token: action.payload }
       break;
+    case 'SET_PAGEMENU':
+        return { ...state, pageMenu: action.payload }
+      break;
     default:
       return state
 

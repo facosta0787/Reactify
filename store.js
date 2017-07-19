@@ -4,6 +4,7 @@ import { reducer } from './reducer'
 
 const state = {
   loading : false,
+  pageMenu: 'artists',
   results : {},
   token : ''
 }

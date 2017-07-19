@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import Router from 'next/router'
+import Link from 'next/link'
 
 import { bindActionCreators } from 'redux'
 import withRedux from 'next-redux-wrapper'
@@ -8,6 +10,8 @@ import actions from '../actions'
 import { Grid } from 'semantic-ui-react'
 import { Input, Form, Button } from 'semantic-ui-react'
 import Card from '../components/CardView'
+import Menu from '../components/MenuView'
+
 
 class Home extends Component {
 
@@ -23,8 +27,8 @@ class Home extends Component {
     const token = await store.dispatch( actions.loadToken(isServer) )
   }
 
-  componentDidMount(){
-
+  async componentDidMount(){
+    //console.log(this.props)
   }
 
   render() {
@@ -38,6 +42,7 @@ class Home extends Component {
           </Form.Group>
         </Form>
         <br />
+        <Menu />
         <Grid>
         {
           this.props.results.artists && this.props.results.artists.items.map(
@@ -69,7 +74,7 @@ class Home extends Component {
       const value = input[0].value
       if(!value == ''){
         await this.props.actions.loadResults(value)
-        console.log(this.props)
+
       }else{
         this.setState({errorSearch:'this field is required!'})
       }
