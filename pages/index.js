@@ -34,11 +34,10 @@ class Home extends Component {
   render() {
     return (
         <div  style={{ border: '0px solid black' }}>
-
         <Form onSubmit={this.handleBuscarClick} style={{ margin:'5px auto 0 auto', width: 260 }}>
           <Form.Group>
             <Input placeholder='Search' size='mini' style={{ width: '200px' }} name='Searcher'></Input>
-            <Button primary size='mini'>Send</Button>
+            <Button secondary size='mini'>Send</Button>
           </Form.Group>
         </Form>
         <br />

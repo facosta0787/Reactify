@@ -11,7 +11,7 @@ class MenuView extends Component {
 
   handleItemClick = (e, { name }) => {
     this.props.actions.setPageMenu(name)
-
+    Router.push(name === 'artists' ? '/' : `/${name}`)
   }
 
   render() {

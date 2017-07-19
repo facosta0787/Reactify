@@ -6,7 +6,7 @@ import withRedux from 'next-redux-wrapper'
 import { initStore } from '../store'
 import actions from '../actions'
 
-class TrackPage extends Component {
+class AlbumsPage extends Component {
 
   constructor(props) {
     super(props);
@@ -40,4 +40,4 @@ function mapDispatchToProps(dispatch){
   }
 }
 
-export default withRedux(initStore,mapStateToProps,mapDispatchToProps)(TrackPage)
+export default withRedux(initStore,mapStateToProps,mapDispatchToProps)(AlbumsPage)
