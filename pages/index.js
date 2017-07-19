@@ -5,7 +5,7 @@ import withRedux from 'next-redux-wrapper'
 import { initStore } from '../store'
 import actions from '../actions'
 
-
+import { Grid } from 'semantic-ui-react'
 import { Input, Form, Button } from 'semantic-ui-react'
 import Card from '../components/CardView'
 
@@ -24,32 +24,41 @@ class Home extends Component {
   }
 
   componentDidMount(){
-    console.log(this.props)
+
   }
 
   render() {
     return (
-      <div>
-        <br />
-        <Form onSubmit={this.handleBuscarClick}>
+        <div  style={{ border: '0px solid black' }}>
+
+        <Form onSubmit={this.handleBuscarClick} style={{ margin:'5px auto 0 auto', width: 260 }}>
           <Form.Group>
             <Input placeholder='Search' size='mini' style={{ width: '200px' }} name='Searcher'></Input>
             <Button primary size='mini'>Send</Button>
           </Form.Group>
         </Form>
+        <br />
+        <Grid>
         {
           this.props.results.artists && this.props.results.artists.items.map(
             item => {
               return (
-                <Card key={item.id}
-                  name={item.name}
-                  image={item.images}
-                  genres={item.genres.join(', ')}/>
+                <Grid.Row key={item.id}>
+                  <Grid.Column style={{ width: 290, margin: '0 auto' }}>
+                    <Card
+                      name={item.name}
+                      image={item.images}
+                      genres={item.genres.join(', ')}
+                      followers= {item.followers.total}
+                      />
+                  </Grid.Column>
+                </Grid.Row>
               )
             }
           )
         }
-      </div>
+      </Grid>
+    </div>
     )
   }
 
@@ -60,6 +69,7 @@ class Home extends Component {
       const value = input[0].value
       if(!value == ''){
         await this.props.actions.loadResults(value)
+        console.log(this.props)
       }else{
         this.setState({errorSearch:'this field is required!'})
       }
