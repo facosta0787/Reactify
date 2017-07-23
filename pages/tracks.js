@@ -20,12 +20,12 @@ class TrackPage extends Component {
   }
 
   componentDidMount() {
-      console.log(this.props)
+
   }
 
   render() {
     const { tracks } = this.props.results
-    console.log( tracks )
+    
     return (
       <div>
         <Menu />
