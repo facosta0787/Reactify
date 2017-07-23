@@ -6,6 +6,10 @@ const HTTP = axios.create({
   baseURL: `https://api.spotify.com/v1`
 })
 
+const setToken = (token) =>{
+  HTTP.defaults.headers.common['Authorization'] = 'Bearer ' + token
+}
+
 class Api{
 
   id = '071685b2e4c94a71881fc852abda49a2'
@@ -14,7 +18,8 @@ class Api{
   get_token(){
     const utf8Array = utf8enc.parse(this.id+':'+this.secret)
     const strBase64 = base64.stringify(utf8Array)
-    const res = axios({
+
+    const response = axios({
       method: 'post',
       headers:{
         'Content-Type':'application/x-www-form-urlencoded',
@@ -23,21 +28,29 @@ class Api{
       url: 'https://accounts.spotify.com/api/token',
       data: 'grant_type=client_credentials'
     })
-    return res
+    .then( (resp) => {
+      return resp
+    })
+    return response
   }
 
   get_data( query,token ){
-    const res = HTTP.get(`/search/?q=${query}&type=artist,album,track`,{
-      headers:{
-        'Authorization':'Bearer ' + token
-      }
-    })
+    setToken(token)
+    const response = HTTP.get(`/search/?q=${query}&type=artist,album,track`)
     .then(resp => {
       return resp
     })
-    return res
+    return response
   }
 
 }
 
 export default new Api()
+
+/*
+,{
+  headers:{
+    'Authorization':'Bearer ' + token
+  }
+}
+*/

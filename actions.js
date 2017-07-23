@@ -59,6 +59,7 @@ function loadToken(isServer = false){
   return async (dispatch) => {
     if(isServer){
     const auth = await api_axios.get_token()
+    console.log(auth)
     dispatch(
       setToken(auth.data.access_token)
     )
