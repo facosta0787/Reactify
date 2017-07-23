@@ -1,4 +1,5 @@
 import api from './services/api-spotify'
+import api_axios from './services/axios-api'
 
 function setResults(results){
   return {
@@ -7,6 +8,8 @@ function setResults(results){
   }
 }
 
+/*
+//with isomorphic-fetch
 function loadResults(query){
   return async (dispatch,getState) =>{
     const state = getState()
@@ -17,6 +20,18 @@ function loadResults(query){
     return results
   }
 }
+*/
+
+function loadResults(query){
+  return async (dispatch,getState) =>{
+    const state = getState()
+    const results = await api_axios.get_data(query,state.token)
+    dispatch(
+      setResults(results.data)
+    )
+    return results.data
+  }
+}
 
 function setToken(token){
   return {
@@ -25,6 +40,8 @@ function setToken(token){
   }
 }
 
+/*
+//with isomorphic-fetch
 function loadToken(isServer = false){
   return async (dispatch) => {
     if(isServer){
@@ -33,6 +50,19 @@ function loadToken(isServer = false){
       setToken(auth.access_token)
     )
     return auth.access_token
+  }
+ }
+}
+*/
+
+function loadToken(isServer = false){
+  return async (dispatch) => {
+    if(isServer){
+    const auth = await api_axios.get_token()
+    dispatch(
+      setToken(auth.data.access_token)
+    )
+    return auth.data.access_token
   }
  }
 }

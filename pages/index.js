@@ -12,6 +12,8 @@ import { Input, Form, Button } from 'semantic-ui-react'
 import Card from '../components/CardView'
 import Menu from '../components/MenuView'
 
+import ax from '../services/axios-api'
+
 
 class Home extends Component {
 
@@ -72,8 +74,7 @@ class Home extends Component {
       const input = document.getElementsByName('Searcher')
       const value = input[0].value
       if(!value == ''){
-        await this.props.actions.loadResults(value)
-        console.log(this.props)
+        await this.props.actions.loadResults(value)        
       }else{
         this.setState({errorSearch:'this field is required!'})
       }
