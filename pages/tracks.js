@@ -25,11 +25,11 @@ class TrackPage extends Component {
 
   render() {
     const { tracks } = this.props.results
-    
+
     return (
       <div>
         <Menu />
-        <Item.Group divided style={{ width: '70%', margin: '0 auto' }}>
+        <Item.Group divided style={{ width: '60%', margin: '0 auto' }}>
           {
               tracks && tracks.items.map(
                 item => {

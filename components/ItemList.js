@@ -4,7 +4,7 @@ import { Item } from 'semantic-ui-react'
 const ItemList = (props) => {
   const title = props.name
   const { artists, images  } = props
-  
+
   return (
 
     <Item>
