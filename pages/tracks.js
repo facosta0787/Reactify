@@ -20,7 +20,7 @@ class TrackPage extends Component {
   }
 
   componentDidMount() {
-      connsole.log(this.props)
+      console.log(this.props)
   }
 
   render() {
