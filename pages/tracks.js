@@ -16,7 +16,8 @@ class TrackPage extends Component {
   }
 
   async getInitialProps({ store , isServer , query }){
-
+    console.log(isServer)
+    console.log(query)
   }
 
   componentDidMount() {
