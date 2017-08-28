@@ -8,7 +8,8 @@ import { initStore } from '../store'
 import actions from '../actions'
 
 import { Grid } from 'semantic-ui-react'
-import { Input, Form, Button } from 'semantic-ui-react'
+// import { Input, Form, Button } from 'semantic-ui-react'
+import FormSearcher from '../components/FormSearcher'
 import Card from '../components/CardView'
 import Menu from '../components/MenuView'
 
@@ -29,19 +30,10 @@ class Home extends Component {
     const token = await store.dispatch( actions.loadToken(isServer) )
   }
 
-  async componentDidMount(){
-
-  }
-
   render() {
     return (
         <div  style={{ border: '0px solid black' }}>
-        <Form onSubmit={this.handleBuscarClick} style={{ margin:'5px auto 0 auto', width: 260 }}>
-          <Form.Group>
-            <Input placeholder='Search' size='mini' style={{ width: '200px' }} name='Searcher'></Input>
-            <Button secondary size='mini'>Send</Button>
-          </Form.Group>
-        </Form>
+          <FormSearcher onSubmit={ this.handleBuscarClick }/>
         <br />
         <Menu />
         <Grid>
@@ -74,7 +66,7 @@ class Home extends Component {
       const input = document.getElementsByName('Searcher')
       const value = input[0].value
       if(!value == ''){
-        await this.props.actions.loadResults(value)        
+        await this.props.actions.loadResults(value)
       }else{
         this.setState({errorSearch:'this field is required!'})
       }
